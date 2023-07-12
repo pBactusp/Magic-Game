@@ -16,6 +16,7 @@ namespace Player
         private int RunningHash;
         private int dieHash;
         private int jumpHash;
+        private int fallHash;
         private int movementAxisX;
         private int movementAxisY;
 
@@ -25,6 +26,7 @@ namespace Player
             RunningHash = Animator.StringToHash("Running");
             dieHash = Animator.StringToHash("Dead");
             jumpHash = Animator.StringToHash("Jump");
+            fallHash = Animator.StringToHash("Falling");
             movementAxisX = Animator.StringToHash("XAxisMovement");
             movementAxisY = Animator.StringToHash("YAxisMovement");
         }
@@ -37,6 +39,10 @@ namespace Player
         {
             Animator.SetTrigger(jumpHash);
         }
+        public void Fall(bool falling)
+        {
+            Animator.SetBool(fallHash, falling);
+        }
 
         public void SetRunning(bool running)
         {
@@ -47,8 +53,8 @@ namespace Player
 
         public void SetMovementDirection(Vector2 direction)
         {
-            Animator.SetFloat(movementAxisX, direction.x);
-            Animator.SetFloat(movementAxisY, direction.y);
+            Animator.SetFloat(movementAxisX, direction.x, AnimationDampTime, Time.deltaTime);
+            Animator.SetFloat(movementAxisY, direction.y, AnimationDampTime, Time.deltaTime);
         }
 
         public void Die()

@@ -57,6 +57,16 @@ namespace Player
 
 
 
+        protected void SetWalkingAnimationAnimationDirections_InTesting()
+        {
+
+            float moveY = player.Velocity.z / player.MovementSpeed;
+            float moveX = player.Velocity.x / player.MovementSpeed;
+
+            Debug.Log(moveX + ", " + moveY);
+            player.Animator.SetMovementDirection(new Vector2(moveX, moveY));
+        }
+
         protected void SetWalkingAnimationAnimationDirections()
         {
             float moveY = 0;

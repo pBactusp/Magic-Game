@@ -86,6 +86,8 @@ namespace Player
         public override void Enter()
         {
             player.Velocity.y = 0f;
+
+            player.Animator.Fall(true);
         }
 
         public override void Tick()
@@ -99,7 +101,10 @@ namespace Player
             }
         }
 
-        public override void Exit() { }
+        public override void Exit()
+        {
+            player.Animator.Fall(false);
+        }
     }
 
 

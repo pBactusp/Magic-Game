@@ -6,57 +6,59 @@ using UnityEngine.AI;
 
 namespace Player
 {
+    [RequireComponent(typeof(InputListener))]
     [RequireComponent(typeof(AnimationManager))]
     [RequireComponent(typeof(HealthManager))]
-    [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(CharacterController))]
     public class PlayerStateMachine : StateMachine
     {
-        [Header("Attack")]
-        public float RotationSpeedWhileAttacking;
 
-        [Header("Performance")]
-        public float NavMeshAgentUpdateTime;
+        [field: Header("Handling")]
+        [field: SerializeField] public float JumpForce { get; private set; }
+        [field: SerializeField] public float LookRotationDampFactor { get; private set; }
+        [field: SerializeField] public float MovementSpeed { get; private set; }
+
 
         [Header("Other")]
         public Transform TargetForEnemies;
+        public Vector3 Velocity;
+
 
         public bool IsAlive { get; private set; }
         public GameManager GameManager { get; private set; }
+        public InputListener Input { get; private set; }
         public AnimationManager Animator { get; private set; }
         public HealthManager HealthManager { get; private set; }
-        public NavMeshAgent Agent { get; private set; }
+        public CharacterController Controller { get; private set; }
 
-
-
-        [HideInInspector] public float timeSinceLastAttack;
 
 
 
         private void Awake()
         {
             GameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+            Input = GetComponent<InputListener>();
             Animator = GetComponent<AnimationManager>();
             HealthManager = GetComponent<HealthManager>();
-            Agent = GetComponent<NavMeshAgent>();
+            Controller = GetComponent<CharacterController>();
         }
 
 
         void Start()
         {
             IsAlive = true;
-            timeSinceLastAttack = 0;
 
             HealthManager.OnDamaged += OnDamaged;
             HealthManager.OnHealed+= OnHealed;
             HealthManager.OnDeath += Die;
 
-            SwitchState(new PlayerIdleState(this));
+            SwitchState(new PlayerMoveState(this));
         }
 
         new private void Update()
         {
-            timeSinceLastAttack += Time.deltaTime;
+            // Code goes here
             base.Update();
         }
 

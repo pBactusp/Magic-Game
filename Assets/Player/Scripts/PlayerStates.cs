@@ -12,14 +12,35 @@ namespace Player
 
         public override void Enter()
         {
+            player.Velocity.y = Physics.gravity.y;
             player.Animator.StartRunning();
+
+            player.Input.OnJumpPerformed += SwitchToJumpState;
         }
 
-        public override void Tick() { }
+        public override void Tick()
+        {
+            if (!player.Controller.isGrounded)
+            {
+                player.SwitchState(new PlayerFallState(player));
+            }
+
+            CalculateMoveDirection();
+            //FaceMoveDirection();
+            Move();
+        }
 
         public override void Exit()
         {
             player.Animator.StopRunning();
+
+            player.Input.OnJumpPerformed -= SwitchToJumpState;
+        }
+
+
+        private void SwitchToJumpState()
+        {
+            player.SwitchState(new PlayerJumpState(player));
         }
 
     }
@@ -32,7 +53,58 @@ namespace Player
         public override void Tick() { }
         public override void Exit() { }
     }
-   
+
+
+    public class PlayerJumpState : PlayerBaseState
+    {
+        public PlayerJumpState(PlayerStateMachine stateMachine) : base(stateMachine) { }
+
+        public override void Enter()
+        {
+            player.Velocity = new Vector3(player.Velocity.x, player.JumpForce, player.Velocity.z);
+
+            player.Animator.Jump();
+        }
+
+        public override void Tick()
+        {
+            ApplyGravity();
+
+            if (player.Velocity.y <= 0f)
+            {
+                player.SwitchState(new PlayerFallState(player));
+            }
+
+            Move();
+        }
+
+        public override void Exit() { }
+    }
+
+    public class PlayerFallState : PlayerBaseState
+    {
+        public PlayerFallState(PlayerStateMachine stateMachine) : base(stateMachine) { }
+
+        public override void Enter()
+        {
+            player.Velocity.y = 0f;
+        }
+
+        public override void Tick()
+        {
+            ApplyGravity();
+            Move();
+
+            if (player.Controller.isGrounded)
+            {
+                player.SwitchState(new PlayerMoveState(player));
+            }
+        }
+
+        public override void Exit() { }
+    }
+
+
 
     public class PlayerDeathState : PlayerBaseState
     {
@@ -40,7 +112,6 @@ namespace Player
 
         public override void Enter()
         {
-            player.Agent.SetDestination(player.transform.position);
             player.Animator.Die();
         }
 

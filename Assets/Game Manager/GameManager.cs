@@ -11,17 +11,6 @@ public class GameManager : MonoBehaviour
     [Header("Components")]
     public Camera MainCamera;
 
-    [Header("For Transparent Objects")]
-    [Range(0f, 1f)]
-    public float MinTransparency;
-    public float TransparencyChangeSpeed;
-
-    [Header("For Selected Outline")]
-    [Range(0f, 10f)]
-    public float OutlineWidth;
-
-    [Header("Read Only, Visible For Debugging")]
-    public Transform SelectedObject;
 
     public Transform Player { get; private set; }
 

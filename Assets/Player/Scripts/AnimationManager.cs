@@ -15,12 +15,20 @@ namespace Player
         // Parameter hashes
         private int RunningHash;
         private int dieHash;
+        private int jumpHash;
 
         private void Awake()
         {
             Animator = GetComponent<Animator>();
             RunningHash = Animator.StringToHash("Running");
             dieHash = Animator.StringToHash("Dead");
+            jumpHash = Animator.StringToHash("Jump");
+        }
+
+
+        public void Jump()
+        {
+            Animator.SetTrigger(jumpHash);
         }
 
 

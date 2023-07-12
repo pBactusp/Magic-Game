@@ -47,8 +47,8 @@ namespace Player
 
         public void SetMovementDirection(Vector2 direction)
         {
-            Animator.SetFloat(movementAxisX, direction.y);
-            Animator.SetFloat(movementAxisY, direction.x);
+            Animator.SetFloat(movementAxisX, direction.x);
+            Animator.SetFloat(movementAxisY, direction.y);
         }
 
         public void Die()

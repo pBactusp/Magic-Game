@@ -1,5 +1,6 @@
 // Ignore Spelling: Nav
 
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -56,9 +57,6 @@ namespace Player
 
 
 
-        /// <summary>
-        /// BROKEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        /// </summary>
         protected void SetWalkingAnimationAnimationDirections()
         {
             float moveY = 0;
@@ -74,9 +72,8 @@ namespace Player
             else if (player.Input.MoveComposite.x < 0)
                 moveX = -1f;
 
+            Debug.Log(moveX + ", " + moveY);
             player.Animator.SetMovementDirection(new Vector2(moveX, moveY));
-            //stateMachine.Animator.SetFloat(YAxisHash, moveY, AnimationDampTime, Time.deltaTime);
-            //stateMachine.Animator.SetFloat(XAxisHash, moveX, AnimationDampTime, Time.deltaTime);
         }
 
     }

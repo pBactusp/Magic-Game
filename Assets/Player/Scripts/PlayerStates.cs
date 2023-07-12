@@ -13,7 +13,6 @@ namespace Player
         public override void Enter()
         {
             player.Velocity.y = Physics.gravity.y;
-            player.Animator.StartRunning();
 
             player.Input.OnJumpPerformed += SwitchToJumpState;
         }
@@ -28,12 +27,11 @@ namespace Player
             CalculateMoveDirection();
             //FaceMoveDirection();
             Move();
+            SetWalkingAnimationAnimationDirections();
         }
 
         public override void Exit()
         {
-            player.Animator.StopRunning();
-
             player.Input.OnJumpPerformed -= SwitchToJumpState;
         }
 

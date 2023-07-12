@@ -54,16 +54,30 @@ namespace Player
             player.Controller.Move(player.Velocity * Time.deltaTime);
         }
 
-        //protected void RotateTowards(Vector3 target)
-        //{
-        //    Vector3 targetVec = (target - player.transform.position).normalized;
 
-        //    Quaternion targetRotation = Quaternion.LookRotation(targetVec, player.transform.up);
-        //    targetRotation = Quaternion.RotateTowards(player.transform.rotation, targetRotation, player.RotationSpeedWhileAttacking * Time.deltaTime);
 
-        //    player.transform.eulerAngles = new Vector3(0f, targetRotation.eulerAngles.y, 0f);
-        //}
+        /// <summary>
+        /// BROKEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        /// </summary>
+        protected void SetWalkingAnimationAnimationDirections()
+        {
+            float moveY = 0;
+            float moveX = 0;
 
+            if (player.Input.MoveComposite.y > 0)
+                moveY = 1f;
+            else if (player.Input.MoveComposite.y < 0)
+                moveY = -1f;
+
+            if (player.Input.MoveComposite.x > 0)
+                moveX = 1f;
+            else if (player.Input.MoveComposite.x < 0)
+                moveX = -1f;
+
+            player.Animator.SetMovementDirection(new Vector2(moveX, moveY));
+            //stateMachine.Animator.SetFloat(YAxisHash, moveY, AnimationDampTime, Time.deltaTime);
+            //stateMachine.Animator.SetFloat(XAxisHash, moveX, AnimationDampTime, Time.deltaTime);
+        }
 
     }
 

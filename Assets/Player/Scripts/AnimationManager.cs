@@ -16,6 +16,8 @@ namespace Player
         private int RunningHash;
         private int dieHash;
         private int jumpHash;
+        private int movementAxisX;
+        private int movementAxisY;
 
         private void Awake()
         {
@@ -23,7 +25,12 @@ namespace Player
             RunningHash = Animator.StringToHash("Running");
             dieHash = Animator.StringToHash("Dead");
             jumpHash = Animator.StringToHash("Jump");
+            movementAxisX = Animator.StringToHash("XAxisMovement");
+            movementAxisY = Animator.StringToHash("YAxisMovement");
         }
+
+
+
 
 
         public void Jump()
@@ -31,18 +38,18 @@ namespace Player
             Animator.SetTrigger(jumpHash);
         }
 
-
-        public void StartRunning()
+        public void SetRunning(bool running)
         {
-            Animator.SetBool(RunningHash, true);
-        }
-        public void StopRunning()
-        {
-            Animator.SetBool(RunningHash, false);
+            Animator.SetBool(RunningHash, running);
         }
 
 
 
+        public void SetMovementDirection(Vector2 direction)
+        {
+            Animator.SetFloat(movementAxisX, direction.y);
+            Animator.SetFloat(movementAxisY, direction.x);
+        }
 
         public void Die()
         {

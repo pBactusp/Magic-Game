@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Goose Beak
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 0
+  - m_Path: Armature/Body
+    m_Weight: 0
+  - m_Path: Armature/Body/Leg1.L
+    m_Weight: 0
+  - m_Path: Armature/Body/Leg1.L/Leg2.L
+    m_Weight: 0
+  - m_Path: Armature/Body/Leg1.L/Leg2.L/Foot.L
+    m_Weight: 0
+  - m_Path: Armature/Body/Leg1.L/Leg2.L/Foot.L/Foot.L_end
+    m_Weight: 0
+  - m_Path: Armature/Body/Leg1.R
+    m_Weight: 0
+  - m_Path: Armature/Body/Leg1.R/Leg2.R
+    m_Weight: 0
+  - m_Path: Armature/Body/Leg1.R/Leg2.R/Foot.R
+    m_Weight: 0
+  - m_Path: Armature/Body/Leg1.R/Leg2.R/Foot.R/Foot.R_end
+    m_Weight: 0
+  - m_Path: Armature/Body/Neck Pole
+    m_Weight: 0
+  - m_Path: Armature/Body/Neck Pole/Neck Pole_end
+    m_Weight: 0
+  - m_Path: Armature/Body/Neck Target
+    m_Weight: 0
+  - m_Path: Armature/Body/Neck Target/Neck Target_end
+    m_Weight: 0
+  - m_Path: Armature/Body/Neck1
+    m_Weight: 0
+  - m_Path: Armature/Body/Neck1/Neck2
+    m_Weight: 0
+  - m_Path: Armature/Body/Neck1/Neck2/Head
+    m_Weight: 0
+  - m_Path: Armature/Body/Neck1/Neck2/Head/Beak.Down
+    m_Weight: 1
+  - m_Path: Armature/Body/Neck1/Neck2/Head/Beak.Down/Beak.Down_end
+    m_Weight: 1
+  - m_Path: Armature/Body/Neck1/Neck2/Head/Beak.Up
+    m_Weight: 1
+  - m_Path: Armature/Body/Neck1/Neck2/Head/Beak.Up/Beak.Up_end
+    m_Weight: 1
+  - m_Path: Armature/Body/Tail
+    m_Weight: 0
+  - m_Path: Armature/Body/Tail/Tail_end
+    m_Weight: 0
+  - m_Path: Armature/Body/Wing1.L
+    m_Weight: 0
+  - m_Path: Armature/Body/Wing1.L/Wing2.L
+    m_Weight: 0
+  - m_Path: Armature/Body/Wing1.L/Wing2.L/Wing3.L
+    m_Weight: 0
+  - m_Path: Armature/Body/Wing1.L/Wing2.L/Wing3.L/Wing4.L
+    m_Weight: 0
+  - m_Path: Armature/Body/Wing1.L/Wing2.L/Wing3.L/Wing4.L/Wing4.L_end
+    m_Weight: 0
+  - m_Path: Armature/Body/Wing1.R
+    m_Weight: 0
+  - m_Path: Armature/Body/Wing1.R/Wing2.R
+    m_Weight: 0
+  - m_Path: Armature/Body/Wing1.R/Wing2.R/Wing3.R
+    m_Weight: 0
+  - m_Path: Armature/Body/Wing1.R/Wing2.R/Wing3.R/Wing4.R
+    m_Weight: 0
+  - m_Path: Armature/Body/Wing1.R/Wing2.R/Wing3.R/Wing4.R/Wing4.R_end
+    m_Weight: 0
+  - m_Path: Armature/Leg1.L Pole
+    m_Weight: 0
+  - m_Path: Armature/Leg1.L Pole/Leg1.L Pole_end
+    m_Weight: 0
+  - m_Path: Armature/Leg1.R Pole
+    m_Weight: 0
+  - m_Path: Armature/Leg1.R Pole/Leg1.R Pole_end
+    m_Weight: 0
+  - m_Path: Armature/Leg2.L Target
+    m_Weight: 0
+  - m_Path: Armature/Leg2.L Target/Leg2.L Target_end
+    m_Weight: 0
+  - m_Path: Armature/Leg2.R Target
+    m_Weight: 0
+  - m_Path: Armature/Leg2.R Target/Leg2.R Target_end
+    m_Weight: 0
+  - m_Path: Mesh
+    m_Weight: 0

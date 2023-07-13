@@ -25,8 +25,8 @@ namespace Player
             }
 
             CalculateMoveDirection();
-            //FaceMoveDirection();
             Move();
+            FaceMoveDirection(); ////////////
             SetWalkingAnimationAnimationDirections();
         }
 

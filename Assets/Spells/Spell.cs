@@ -7,6 +7,7 @@ using System;
 public abstract class Spell : MonoBehaviour
 {
     protected SpellInitializationArguments args;
+    [SerializeField] protected float lifeTime;
     [SerializeField] protected DamageData damage;
 
     public Action OnHit;
@@ -23,4 +24,9 @@ public abstract class Spell : MonoBehaviour
     }
 
     protected abstract void Behavior();
+    protected virtual void Die()
+    {
+        gameObject.SetActive(false);
+        Destroy(gameObject);
+    }
 }

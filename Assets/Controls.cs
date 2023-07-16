@@ -71,6 +71,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Spell 2"",
+                    ""type"": ""Button"",
+                    ""id"": ""c0a80e0b-d06d-4be9-8a92-5167d3618c75"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Spell 1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40662ecd-3431-4345-855d-092d0e960357"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard And Mouse"",
+                    ""action"": ""Spell 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -202,6 +222,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Spell1 = m_Player.FindAction("Spell 1", throwIfNotFound: true);
+        m_Player_Spell2 = m_Player.FindAction("Spell 2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -268,6 +289,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Spell1;
+    private readonly InputAction m_Player_Spell2;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -277,6 +299,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Spell1 => m_Wrapper.m_Player_Spell1;
+        public InputAction @Spell2 => m_Wrapper.m_Player_Spell2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -301,6 +324,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Spell1.started += instance.OnSpell1;
             @Spell1.performed += instance.OnSpell1;
             @Spell1.canceled += instance.OnSpell1;
+            @Spell2.started += instance.OnSpell2;
+            @Spell2.performed += instance.OnSpell2;
+            @Spell2.canceled += instance.OnSpell2;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -320,6 +346,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Spell1.started -= instance.OnSpell1;
             @Spell1.performed -= instance.OnSpell1;
             @Spell1.canceled -= instance.OnSpell1;
+            @Spell2.started -= instance.OnSpell2;
+            @Spell2.performed -= instance.OnSpell2;
+            @Spell2.canceled -= instance.OnSpell2;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -353,5 +382,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnSpell1(InputAction.CallbackContext context);
+        void OnSpell2(InputAction.CallbackContext context);
     }
 }

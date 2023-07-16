@@ -958,7 +958,7 @@ MonoBehaviour:
   <SprintSpeed>k__BackingField: 9
   <Spells>k__BackingField:
   - {fileID: 11400000, guid: f65499f177d26804f96ec76dc22dc9a5, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 588cc479fe2023d428a8faa0a22e06d1, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   <CastingPosition>k__BackingField: {fileID: 1122991967}

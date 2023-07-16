@@ -76,6 +76,30 @@ public class InputListener : MonoBehaviour, Controls.IPlayerActions
         OnCastingSpell?.Invoke(0);
     }
 
+    public void OnSpell2(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+            return;
+
+        OnCastingSpell?.Invoke(1);
+    }
+
+    public void OnSpell3(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+            return;
+
+        OnCastingSpell?.Invoke(2);
+    }
+
+    public void OnSpell4(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+            return;
+
+        OnCastingSpell?.Invoke(3);
+    }
+
 
 
 

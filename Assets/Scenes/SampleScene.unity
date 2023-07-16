@@ -983,6 +983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MouseDelta: {x: 0, y: 0}
   MoveComposite: {x: 0, y: 0}
+  IsSprinting: 0
 --- !u!54 &1088436177
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1050,7 +1051,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <JumpForce>k__BackingField: 5
   <LookRotationDampFactor>k__BackingField: 10
-  <MovementSpeed>k__BackingField: 3
+  <WalkSpeed>k__BackingField: 3
+  <SprintSpeed>k__BackingField: 9
   TargetForEnemies: {fileID: 713671470}
   Velocity: {x: 0, y: 0, z: 0}
 --- !u!136 &1088436180
@@ -1525,7 +1527,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505489806}
-  m_LocalRotation: {x: -0.07801066, y: 0.0063265376, z: -0.002761111, w: -0.9969287}
+  m_LocalRotation: {x: -0.07801066, y: 0.0063265534, z: -0.0027611179, w: -0.9969287}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

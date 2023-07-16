@@ -17,7 +17,8 @@ namespace Player
         [field: Header("Handling")]
         [field: SerializeField] public float JumpForce { get; private set; }
         [field: SerializeField] public float LookRotationDampFactor { get; private set; }
-        [field: SerializeField] public float MovementSpeed { get; private set; }
+        [field: SerializeField] public float WalkSpeed { get; private set; }
+        [field: SerializeField] public float SprintSpeed { get; private set; }
 
 
         [Header("Other")]

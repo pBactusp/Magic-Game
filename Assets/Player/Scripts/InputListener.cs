@@ -8,8 +8,11 @@ public class InputListener : MonoBehaviour, Controls.IPlayerActions
 {
     public Vector2 MouseDelta;
     public Vector2 MoveComposite;
+    public bool IsSprinting;
 
     public Action OnJumpPerformed;
+    public Action OnStartedSprinting;
+    public Action OnStoppedSprinting;
 
     private Controls controls;
 
@@ -33,6 +36,19 @@ public class InputListener : MonoBehaviour, Controls.IPlayerActions
         OnJumpPerformed?.Invoke();
     }
 
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            IsSprinting = true;
+            OnStartedSprinting?.Invoke();
+        }
+        else if (context.canceled)
+        {
+            IsSprinting = false;
+            OnStoppedSprinting?.Invoke();
+        }
+    }
 
 
     public void OnEnable()
@@ -49,4 +65,6 @@ public class InputListener : MonoBehaviour, Controls.IPlayerActions
     {
         controls.Player.Disable();
     }
+
+
 }

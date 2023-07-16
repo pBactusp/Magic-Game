@@ -13,7 +13,7 @@ namespace Player
         public Animator Animator { get; private set; }
 
         // Parameter hashes
-        private int RunningHash;
+        private int sprintingHash;
         private int dieHash;
         private int jumpHash;
         private int fallHash;
@@ -23,7 +23,7 @@ namespace Player
         private void Awake()
         {
             Animator = GetComponent<Animator>();
-            RunningHash = Animator.StringToHash("Running");
+            sprintingHash = Animator.StringToHash("Sprinting");
             dieHash = Animator.StringToHash("Dead");
             jumpHash = Animator.StringToHash("Jump");
             fallHash = Animator.StringToHash("Falling");
@@ -44,9 +44,9 @@ namespace Player
             Animator.SetBool(fallHash, falling);
         }
 
-        public void SetRunning(bool running)
+        public void SetSprinting(bool sprinting)
         {
-            Animator.SetBool(RunningHash, running);
+            Animator.SetBool(sprintingHash, sprinting);
         }
 
 

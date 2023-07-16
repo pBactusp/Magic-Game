@@ -18,7 +18,7 @@ namespace Player
             transform = player.transform;
         }
 
-        protected void CalculateMoveDirection()
+        protected void CalculateMoveDirection(float movementSpeed)
         {
             var camera = GameManager.Instance.MainCamera.transform;
             var moveComposite = player.Input.MoveComposite;
@@ -28,8 +28,8 @@ namespace Player
 
             Vector3 moveDirection = cameraForward.normalized * moveComposite.y + cameraRight.normalized * moveComposite.x;
 
-            player.Velocity.x = moveDirection.x * player.MovementSpeed;
-            player.Velocity.z = moveDirection.z * player.MovementSpeed;
+            player.Velocity.x = moveDirection.x * movementSpeed;
+            player.Velocity.z = moveDirection.z * movementSpeed;
         }
 
         protected void FaceMoveDirection()

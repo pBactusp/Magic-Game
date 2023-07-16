@@ -35,7 +35,7 @@ namespace Player
 
             CalculateMoveDirection(currentSpeed);
             Move();
-            FaceMoveDirection(); ////////////
+            FaceMoveDirection();
             SetWalkingAnimationAnimationDirections();
         }
 

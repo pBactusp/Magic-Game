@@ -11,35 +11,8 @@ public abstract class Spell : MonoBehaviour
 
     public Action OnHit;
 
-    protected Spell(Transform origin)
+    public virtual void Init(Transform origin)
     {
         this.origin = origin;
     }
 }
-
-//Spell:
-//{
-//    Fields:
-//    {
-//        Origin,
-//    Damage,
-//  },
-//  Events:
-//    {
-//        OnHit
-//  }
-//}
-
-//Projectile(Spell):
-//{
-//    Fields:
-//    {
-//        Direction,
-//    Target,
-
-//  },
-//  Events:
-//    {
-
-//    }
-//}

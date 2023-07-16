@@ -21,6 +21,11 @@ namespace Player
         [field: SerializeField] public float SprintSpeed { get; private set; }
 
 
+        [field: Header("Spells")]
+        [field: SerializeField] public SpellCastingData[] Spells { get; private set; }
+        [field: SerializeField] public Transform CastingPosition { get; private set; }
+
+
         [Header("Other")]
         public Transform TargetForEnemies;
         public Vector3 Velocity;

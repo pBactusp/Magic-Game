@@ -14,7 +14,25 @@ public class InputListener : MonoBehaviour, Controls.IPlayerActions
     public Action OnStartedSprinting;
     public Action OnStoppedSprinting;
 
+    public Action<int> OnCastingSpell;
+
+
     private Controls controls;
+
+    public void OnEnable()
+    {
+        if (controls != null)
+            return;
+
+        controls = new Controls();
+        controls.Player.SetCallbacks(this);
+        controls.Player.Enable();
+    }
+
+    public void OnDisable()
+    {
+        controls.Player.Disable();
+    }
 
 
 
@@ -50,21 +68,16 @@ public class InputListener : MonoBehaviour, Controls.IPlayerActions
         }
     }
 
-
-    public void OnEnable()
+    public void OnSpell1(InputAction.CallbackContext context)
     {
-        if (controls != null)
+        if (!context.performed)
             return;
 
-        controls = new Controls();
-        controls.Player.SetCallbacks(this);
-        controls.Player.Enable();
+        OnCastingSpell?.Invoke(0);
     }
 
-    public void OnDisable()
-    {
-        controls.Player.Disable();
-    }
+
+
 
 
 }

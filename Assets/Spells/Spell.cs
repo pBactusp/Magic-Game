@@ -6,13 +6,21 @@ using System;
 [Serializable]
 public abstract class Spell : MonoBehaviour
 {
-    protected Transform origin;
+    protected SpellInitializationArguments args;
     [SerializeField] protected DamageData damage;
 
     public Action OnHit;
 
-    public virtual void Init(Transform origin)
+    public virtual void Init(SpellInitializationArguments args)
     {
-        this.origin = origin;
+        this.args = args;
+
+        transform.position = args.Origin.position;
+        transform.rotation = args.Origin.rotation;
+        transform.parent = args.Parent;
+        
+        Behavior();
     }
+
+    protected abstract void Behavior();
 }

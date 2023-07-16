@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-
+    #region Movement
     public class PlayerMoveState : PlayerBaseState
     {
         float currentSpeed;
@@ -24,6 +24,7 @@ namespace Player
             player.Input.OnJumpPerformed += SwitchToJumpState;
             player.Input.OnStartedSprinting += StartedSprinting;
             player.Input.OnStoppedSprinting += StoppedSprinting;
+            player.Input.OnCastingSpell += CastingSpell;
         }
 
         public override void Tick()
@@ -33,10 +34,13 @@ namespace Player
                 player.SwitchState(new PlayerFallState(player));
             }
 
-            CalculateMoveDirection(currentSpeed);
-            Move();
-            FaceMoveDirection();
-            SetWalkingAnimationAnimationDirections();
+            //CalculateMoveDirection(currentSpeed);
+            //Move();
+            //FaceMoveDirection();
+            //SetWalkingAnimationAnimationDirections();
+
+            HandleMovement(currentSpeed);
+            //FaceMoveDirection();
         }
 
         public override void Exit()
@@ -46,6 +50,7 @@ namespace Player
             player.Input.OnJumpPerformed -= SwitchToJumpState;
             player.Input.OnStartedSprinting -= StartedSprinting;
             player.Input.OnStoppedSprinting -= StoppedSprinting;
+            player.Input.OnCastingSpell -= CastingSpell;
         }
 
 
@@ -63,6 +68,11 @@ namespace Player
         {
             currentSpeed = player.WalkSpeed;
             player.Animator.SetSprinting(false);
+        }
+
+        private void CastingSpell(int index)
+        {
+            player.SwitchState(new PlayerCastSpellState(player, player.Spells[index]));
         }
     }
 
@@ -129,6 +139,68 @@ namespace Player
             player.Animator.Fall(false);
         }
     }
+    #endregion
+
+    public class PlayerCastSpellState : PlayerBaseState
+    {
+        private SpellCastingData spellData;
+        private Coroutine casting;
+
+        public PlayerCastSpellState(PlayerStateMachine stateMachine, SpellCastingData spellData) : base(stateMachine)
+        {
+            this.spellData = spellData;
+        }
+
+
+        public override void Enter()
+        {
+            casting = player.StartCoroutine(CastSpell());
+        }
+
+        public override void Tick() { }
+
+        public override void Exit()
+        {
+
+        }
+
+        private void Canceled()
+        {
+            player.StopCoroutine(casting);
+
+        }
+
+
+        private IEnumerator CastSpell()
+        {
+            float time = 0;
+
+            while (time < spellData.CastTime)
+            {
+                HandleMovement(spellData.MovementSpeedWhileCasting);
+
+                time += Time.deltaTime;
+                yield return null;
+            }
+
+
+            var spellObject = GameObject.Instantiate(spellData.Spell);
+            var spell = spellObject.GetComponent<Spell>();
+
+            var args = new SpellInitializationArguments()
+            {
+                Origin = player.CastingPosition,
+                Direction = player.CastingPosition.forward,
+                Target = null
+            };
+
+            spell.Init(args);
+
+            player.SwitchState(new PlayerMoveState(player));
+        }
+
+
+    }
 
 
 
@@ -151,6 +223,6 @@ namespace Player
 
         }
     }
-    
+
 
 }

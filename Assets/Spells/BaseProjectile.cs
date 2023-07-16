@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+
 public abstract class BaseProjectile : Spell
 {
-    [SerializeField] private float speed;
-    private Vector3 direction;
-    private Transform target;
+    [SerializeField] protected float gravity;
+    [SerializeField] protected float speed;
+    protected Rigidbody rb;
 
 
-    public void Init(Transform origin, Vector3 direction, Transform target)
+    private void Awake()
     {
-        base.Init(origin);
-
-        this.direction = direction;
-        this.target = target;
+        rb = GetComponent<Rigidbody>();
     }
+    private void Start()
+    {
+        rb.useGravity = (gravity != 0);
+    }
+
+
+    
 }

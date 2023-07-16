@@ -55,7 +55,13 @@ namespace Player
             player.Controller.Move(player.Velocity * Time.deltaTime);
         }
 
-
+        protected void HandleMovement(float movementSpeed)
+        {
+            CalculateMoveDirection(movementSpeed);
+            Move();
+            FaceMoveDirection();
+            SetWalkingAnimationAnimationDirections();
+        }
 
         protected void SetWalkingAnimationAnimationDirections()
         {

@@ -55,11 +55,11 @@ namespace Player
             player.Controller.Move(player.Velocity * Time.deltaTime);
         }
 
-        protected void HandleMovement(float movementSpeed)
+        protected void HandleMovement(float movementSpeed, bool faceMoveDirection = true)
         {
             CalculateMoveDirection(movementSpeed);
             Move();
-            FaceMoveDirection();
+            if (faceMoveDirection) FaceMoveDirection();
             SetWalkingAnimationAnimationDirections();
         }
 
@@ -73,6 +73,12 @@ namespace Player
 
             //Debug.Log(moveX + ", " + moveY);
             player.Animator.SetMovementDirection(new Vector2(moveX, moveY));
+        }
+
+        protected void RotateTowards(Vector3 target, float turnSpeed)
+        {
+            var targetRotation = Quaternion.LookRotation(target, transform.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed);
         }
     }
 

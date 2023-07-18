@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff8cd0f25b8e0b45ba17b7e5c4722d9, type: 3}
   m_Name: TestProjectile1Data
   m_EditorClassIdentifier: 
-  <CastTime>k__BackingField: 0.5
+  <CastTime>k__BackingField: 1
   <MovementSpeedWhileCasting>k__BackingField: 1
   <Spell>k__BackingField: {fileID: 3941108682560161897, guid: 0a127ad0b6a19e74fb65ac96acafddc9,
     type: 3}

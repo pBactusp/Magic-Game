@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player
@@ -10,6 +8,9 @@ namespace Player
     {
         public float AnimationDampTime;
 
+        public Action OnSpawnSpell;
+        public Action OnLaunchSpell;
+
         public Animator Animator { get; private set; }
 
         // Parameter hashes
@@ -17,18 +18,32 @@ namespace Player
         private int dieHash;
         private int jumpHash;
         private int fallHash;
-        private int movementAxisX;
-        private int movementAxisY;
+        private int movementAxisXHash;
+        private int movementAxisYHash;
+        private int castingHash;
+        private int castingSpeedHash;
+
+        // Layer Indices
+        private int actionsLayer;
+
+
 
         private void Awake()
         {
+            // Parameters
             Animator = GetComponent<Animator>();
             sprintingHash = Animator.StringToHash("Sprinting");
             dieHash = Animator.StringToHash("Dead");
             jumpHash = Animator.StringToHash("Jump");
             fallHash = Animator.StringToHash("Falling");
-            movementAxisX = Animator.StringToHash("XAxisMovement");
-            movementAxisY = Animator.StringToHash("YAxisMovement");
+            movementAxisXHash = Animator.StringToHash("XAxisMovement");
+            movementAxisYHash = Animator.StringToHash("YAxisMovement");
+            castingHash = Animator.StringToHash("Cast");
+            castingSpeedHash = Animator.StringToHash("CastingSpeed");
+            
+
+            // Layers
+            actionsLayer = Animator.GetLayerIndex("Actions");
         }
 
 
@@ -48,18 +63,33 @@ namespace Player
         {
             Animator.SetBool(sprintingHash, sprinting);
         }
-
-
-
         public void SetMovementDirection(Vector2 direction)
         {
-            Animator.SetFloat(movementAxisX, direction.x, AnimationDampTime, Time.deltaTime);
-            Animator.SetFloat(movementAxisY, direction.y, AnimationDampTime, Time.deltaTime);
+            Animator.SetFloat(movementAxisXHash, direction.x, AnimationDampTime, Time.deltaTime);
+            Animator.SetFloat(movementAxisYHash, direction.y, AnimationDampTime, Time.deltaTime);
+        }
+
+        public void CastSpell(float castingTime)
+        {
+            Animator.SetFloat(castingSpeedHash, 1f / castingTime);
+            Animator.SetTrigger(castingHash);
         }
 
         public void Die()
         {
             Animator.SetTrigger(dieHash);
+        }
+
+
+
+        // For animation events
+        public void _SpawnSpell()
+        {
+            OnSpawnSpell?.Invoke();
+        }
+        public void _LaunchSpell()
+        {
+            OnLaunchSpell?.Invoke();
         }
     }
 

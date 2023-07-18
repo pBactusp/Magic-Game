@@ -124,10 +124,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141d4d26ad3eb2541be1c805cace545a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 5
   damage:
     Physical: 0
     Fire: 0
     Magic: 2
     Poise: 0
   gravity: 0
-  speed: 5
+  speed: 20

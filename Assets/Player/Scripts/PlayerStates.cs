@@ -34,13 +34,7 @@ namespace Player
                 player.SwitchState(new PlayerFallState(player));
             }
 
-            //CalculateMoveDirection(currentSpeed);
-            //Move();
-            //FaceMoveDirection();
-            //SetWalkingAnimationAnimationDirections();
-
             HandleMovement(currentSpeed);
-            //FaceMoveDirection();
         }
 
         public override void Exit()
@@ -145,6 +139,8 @@ namespace Player
     {
         private SpellCastingData spellData;
         private Coroutine casting;
+        private Spell spell;
+
 
         public PlayerCastSpellState(PlayerStateMachine stateMachine, SpellCastingData spellData) : base(stateMachine)
         {
@@ -154,14 +150,22 @@ namespace Player
 
         public override void Enter()
         {
+            player.Animator.CastSpell(spellData.CastTime);
             casting = player.StartCoroutine(CastSpell());
+
+            player.Animator.OnSpawnSpell += SpawnSpell;
+            player.Animator.OnLaunchSpell += LaunchSpell;
         }
 
-        public override void Tick() { }
+        public override void Tick()
+        {
+
+        }
 
         public override void Exit()
         {
-
+            player.Animator.OnSpawnSpell -= SpawnSpell;
+            player.Animator.OnLaunchSpell -= LaunchSpell;
         }
 
         private void Canceled()
@@ -170,6 +174,29 @@ namespace Player
 
         }
 
+        private void SpawnSpell()
+        {
+            var spellObject = GameObject.Instantiate(spellData.Spell);
+            spell = spellObject.GetComponent<Spell>();
+
+
+            spell.Spawn(player.CastingPosition);
+        }
+
+        private void LaunchSpell()
+        {
+            if (spell == null)
+                return;
+
+            var args = new SpellInitializationArguments()
+            {
+                Origin = player.CastingPosition,
+                Direction = GameManager.Instance.MainCamera.transform.forward,
+                Target = null
+            };
+
+            spell.Launch(args);
+        }
 
         private IEnumerator CastSpell()
         {
@@ -177,24 +204,31 @@ namespace Player
 
             while (time < spellData.CastTime)
             {
-                HandleMovement(spellData.MovementSpeedWhileCasting);
+                HandleMovement(spellData.MovementSpeedWhileCasting, false);
+
+                var cameraForward = GameManager.Instance.MainCamera.transform.forward;
+                cameraForward.Scale( new Vector3(1, 0, 1));
+                cameraForward.Normalize();
+
+                RotateTowards(cameraForward, player.SnapToLookDirectionSpeed);
 
                 time += Time.deltaTime;
                 yield return null;
             }
 
 
-            var spellObject = GameObject.Instantiate(spellData.Spell);
-            var spell = spellObject.GetComponent<Spell>();
+            //var spellObject = GameObject.Instantiate(spellData.Spell);
+            //var spell = spellObject.GetComponent<Spell>();
+            
 
-            var args = new SpellInitializationArguments()
-            {
-                Origin = player.CastingPosition,
-                Direction = player.CastingPosition.forward,
-                Target = null
-            };
+            //var args = new SpellInitializationArguments()
+            //{
+            //    Origin = player.CastingPosition,
+            //    Direction = player.CastingPosition.forward,
+            //    Target = null
+            //};
 
-            spell.Init(args);
+            //spell.Init(args);
 
             player.SwitchState(new PlayerMoveState(player));
         }

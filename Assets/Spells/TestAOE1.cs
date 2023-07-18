@@ -8,26 +8,32 @@ public class TestAOE1 : BaseAreaOfEffect
     [SerializeField] float targetScale;
     [SerializeField] AnimationCurve expansionRate;
 
+    private Coroutine expand;
+
     protected override void Behavior()
     {
-        StartCoroutine(Expand());
+        base.Behavior();
+        expand = StartCoroutine(Expand());
     }
 
 
     private IEnumerator Expand()
     {
-        float time = 0;
-
-        while (time < lifeTime)
+        while (true)
         {
-            float newScale = Mathf.Lerp(startScale, targetScale, expansionRate.Evaluate(time / lifeTime));
+            float newScale = Mathf.Lerp(startScale, targetScale, expansionRate.Evaluate(normalizedLifetime));
 
             transform.localScale = Vector3.one * newScale;
 
-            time += Time.deltaTime;
             yield return null;
         }
 
-        Die();
+        //Die();
+    }
+
+    protected override void Die()
+    {
+        StopCoroutine(expand);
+        base.Die();
     }
 }

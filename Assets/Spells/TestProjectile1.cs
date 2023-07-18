@@ -6,6 +6,7 @@ public class TestProjectile1 : BaseProjectile
 {
     protected override void Behavior()
     {
+        base.Behavior();
         rb.velocity = args.Direction * speed;
     }
 }

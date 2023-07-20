@@ -6,6 +6,8 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Test Projectile 1
+  m_Name: 2H Area Casting
   m_Controller: {fileID: 9100000, guid: 574b47c08df0f224aa9aaa7ebaf749f2, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 517a44e659bc5bf4a9d69cd3bce281f2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a29adc1acc3822e49bd0fe452c0469c6, type: 2}

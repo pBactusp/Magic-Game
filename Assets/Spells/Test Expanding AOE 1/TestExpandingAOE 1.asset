@@ -10,9 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bff8cd0f25b8e0b45ba17b7e5c4722d9, type: 3}
-  m_Name: TestProjectile1Data
+  m_Name: TestExpandingAOE 1
   m_EditorClassIdentifier: 
-  <CastTime>k__BackingField: 1
+  <CastTime>k__BackingField: 2
   <MovementSpeedWhileCasting>k__BackingField: 1
-  <Spell>k__BackingField: {fileID: 3941108682560161897, guid: 0a127ad0b6a19e74fb65ac96acafddc9,
+  <PlayerSlowdownSpeed>k__BackingField: 1
+  <Spell>k__BackingField: {fileID: 4280537229393656726, guid: ad04c03a64aae3d4f88205cba93ad707,
     type: 3}
+  <Animator>k__BackingField: {fileID: 22100000, guid: 2ec9cf31f47b6f94ea38229247f42f2b,
+    type: 2}
+  <Origin>k__BackingField: 3

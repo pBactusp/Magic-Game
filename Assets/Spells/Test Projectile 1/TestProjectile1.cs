@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TestProjectile1 : BaseProjectile
 {
-    protected override void Behavior()
+    protected override void OnLaunch()
     {
-        base.Behavior();
+        base.OnLaunch();
         rb.velocity = args.Direction * speed;
     }
 }

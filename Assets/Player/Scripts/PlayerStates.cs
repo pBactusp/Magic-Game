@@ -138,20 +138,33 @@ namespace Player
     public class PlayerCastSpellState : PlayerBaseState
     {
         private SpellCastingData spellData;
+        private Transform spellOrigin;
         private Coroutine casting;
         private Spell spell;
+        float currentMovementSpeed;
 
 
         public PlayerCastSpellState(PlayerStateMachine stateMachine, SpellCastingData spellData) : base(stateMachine)
         {
             this.spellData = spellData;
+            currentMovementSpeed = player.WalkSpeed;
         }
 
 
         public override void Enter()
         {
+            player.Animator.SetOverride(spellData.Animator);
             player.Animator.CastSpell(spellData.CastTime);
+
             casting = player.StartCoroutine(CastSpell());
+
+            switch (spellData.Origin)
+            {
+                case SpellOrigin.RightHand: spellOrigin = player.RightHand; break;
+                case SpellOrigin.LeftHand: spellOrigin = player.LeftHand; break;
+                case SpellOrigin.Chest: spellOrigin = player.Chest; break;
+                default: break;
+            }
 
             player.Animator.OnSpawnSpell += SpawnSpell;
             player.Animator.OnLaunchSpell += LaunchSpell;
@@ -164,6 +177,8 @@ namespace Player
 
         public override void Exit()
         {
+            player.Animator.SetMovementSpeed(1);
+
             player.Animator.OnSpawnSpell -= SpawnSpell;
             player.Animator.OnLaunchSpell -= LaunchSpell;
         }
@@ -171,16 +186,15 @@ namespace Player
         private void Canceled()
         {
             player.StopCoroutine(casting);
-
+            player.SwitchState(new PlayerMoveState(player));
         }
 
         private void SpawnSpell()
         {
             var spellObject = GameObject.Instantiate(spellData.Spell);
-            spell = spellObject.GetComponent<Spell>();
+            spell = spellObject.GetComponent<Spell>();            
 
-
-            spell.Spawn(player.CastingPosition);
+            spell.Spawn(spellOrigin);
         }
 
         private void LaunchSpell()
@@ -190,7 +204,7 @@ namespace Player
 
             var args = new SpellInitializationArguments()
             {
-                Origin = player.CastingPosition,
+                Origin = spellOrigin,
                 Direction = GameManager.Instance.MainCamera.transform.forward,
                 Target = null
             };
@@ -201,34 +215,29 @@ namespace Player
         private IEnumerator CastSpell()
         {
             float time = 0;
+            bool reachedTargetSpeed = false;
 
             while (time < spellData.CastTime)
             {
-                HandleMovement(spellData.MovementSpeedWhileCasting, false);
+                // Handle slowing down
+                if (time < spellData.PlayerSlowdownSpeed)
+                {
+                    currentMovementSpeed = Mathf.Lerp(player.WalkSpeed, spellData.MovementSpeedWhileCasting, time / spellData.PlayerSlowdownSpeed);
+                    player.Animator.SetMovementSpeed(currentMovementSpeed / player.WalkSpeed);
+                }
+                else if (!reachedTargetSpeed)
+                {
+                    reachedTargetSpeed = true;
+                    currentMovementSpeed = spellData.MovementSpeedWhileCasting;
+                    player.Animator.SetMovementSpeed(currentMovementSpeed / player.WalkSpeed);
+                }
 
-                var cameraForward = GameManager.Instance.MainCamera.transform.forward;
-                cameraForward.Scale( new Vector3(1, 0, 1));
-                cameraForward.Normalize();
-
-                RotateTowards(cameraForward, player.SnapToLookDirectionSpeed);
+                HandleMovement(currentMovementSpeed, false);
+                RotateTowardsCameraView();
 
                 time += Time.deltaTime;
                 yield return null;
             }
-
-
-            //var spellObject = GameObject.Instantiate(spellData.Spell);
-            //var spell = spellObject.GetComponent<Spell>();
-            
-
-            //var args = new SpellInitializationArguments()
-            //{
-            //    Origin = player.CastingPosition,
-            //    Direction = player.CastingPosition.forward,
-            //    Target = null
-            //};
-
-            //spell.Init(args);
 
             player.SwitchState(new PlayerMoveState(player));
         }

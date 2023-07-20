@@ -20,6 +20,7 @@ namespace Player
         private int fallHash;
         private int movementAxisXHash;
         private int movementAxisYHash;
+        private int movementSpeedHash;
         private int castingHash;
         private int castingSpeedHash;
 
@@ -38,6 +39,7 @@ namespace Player
             fallHash = Animator.StringToHash("Falling");
             movementAxisXHash = Animator.StringToHash("XAxisMovement");
             movementAxisYHash = Animator.StringToHash("YAxisMovement");
+            movementSpeedHash = Animator.StringToHash("MovementSpeed");
             castingHash = Animator.StringToHash("Cast");
             castingSpeedHash = Animator.StringToHash("CastingSpeed");
             
@@ -48,7 +50,10 @@ namespace Player
 
 
 
-
+        public void SetOverride(AnimatorOverrideController controller)
+        {
+            Animator.runtimeAnimatorController = controller;
+        }
 
         public void Jump()
         {
@@ -68,6 +73,11 @@ namespace Player
             Animator.SetFloat(movementAxisXHash, direction.x, AnimationDampTime, Time.deltaTime);
             Animator.SetFloat(movementAxisYHash, direction.y, AnimationDampTime, Time.deltaTime);
         }
+        public void SetMovementSpeed(float speed)
+        {
+            Animator.SetFloat(movementSpeedHash, speed);
+        }
+
 
         public void CastSpell(float castingTime)
         {

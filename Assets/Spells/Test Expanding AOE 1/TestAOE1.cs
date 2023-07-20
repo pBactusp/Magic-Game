@@ -10,9 +10,14 @@ public class TestAOE1 : BaseAreaOfEffect
 
     private Coroutine expand;
 
-    protected override void Behavior()
+    protected override void OnSpawn()
     {
-        base.Behavior();
+        transform.localScale = Vector3.one * startScale;
+    }
+
+    protected override void OnLaunch()
+    {
+        base.OnLaunch();
         expand = StartCoroutine(Expand());
     }
 
@@ -36,4 +41,6 @@ public class TestAOE1 : BaseAreaOfEffect
         StopCoroutine(expand);
         base.Die();
     }
+
+    
 }

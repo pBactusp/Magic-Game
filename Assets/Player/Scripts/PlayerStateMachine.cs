@@ -24,12 +24,16 @@ namespace Player
 
         [field: Header("Spells")]
         [field: SerializeField] public SpellCastingData[] Spells { get; private set; }
-        [field: SerializeField] public Transform CastingPosition { get; private set; }
 
 
         [Header("Other")]
         public Transform TargetForEnemies;
         public Vector3 Velocity;
+
+        [field: SerializeField] public Transform RightHand { get; private set; }
+        [field: SerializeField] public Transform LeftHand { get; private set; }
+        [field: SerializeField] public Transform Chest { get; private set; }
+
 
 
         public bool IsAlive { get; private set; }

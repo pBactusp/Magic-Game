@@ -7,11 +7,23 @@ public class SpellCastingData : ScriptableObject
 {
     [field: SerializeField] public float CastTime { get; private set; }
     [field: SerializeField] public float MovementSpeedWhileCasting { get; private set; }
+    [field: SerializeField] public float PlayerSlowdownSpeed { get; private set; } // The time it takes the player to get to "MovementSpeedWhileCasting" while casting this spell
     [field: SerializeField] public GameObject Spell { get; private set; }
+    [field: SerializeField] public AnimatorOverrideController Animator { get; private set; }
+    [field: SerializeField] public SpellOrigin Origin { get; private set; }
 }
 
 [CreateAssetMenu(fileName = "SelfSpellData", menuName = "Spell Data/Self Targeting Spell")]
 public class SelfTargetingSpells : SpellCastingData
 {
 
+}
+
+
+public enum SpellOrigin
+{
+    Null,
+    RightHand,
+    LeftHand,
+    Chest
 }

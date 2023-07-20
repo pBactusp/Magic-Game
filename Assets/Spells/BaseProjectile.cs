@@ -21,7 +21,7 @@ public abstract class BaseProjectile : Spell
         rb.useGravity = (gravity != 0);
     }
 
-    protected override void Behavior()
+    protected override void OnLaunch()
     {
         transform.parent = null;
     }

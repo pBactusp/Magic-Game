@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e6b9c7248bd077642ae085b9fa3297d5
+guid: 5f837a70760b8a24db702dd010f2b869
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 1H Forward Cast
-      takeName: Armature|1H Forward Cast
-      internalID: 5837020368271047934
+      name: Armature|2H Area Cast
+      takeName: Armature|2H Area Cast
+      internalID: 7247228906901962538
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 196
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -56,29 +56,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.062744714
-        functionName: _SpawnSpell
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.4042553
-        functionName: _LaunchSpell
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: 2H Area Cast
-      takeName: Armature|2H Area Cast
-      internalID: 7247228906901962538
+      takeName: Armature|2H Area Cast Normalized
+      internalID: -455401889433634126
       firstFrame: 0
       lastFrame: 60
       wrapMode: 0
@@ -100,14 +86,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.4322508
+      - time: 0.63941765
         functionName: _SpawnSpell
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.48824185
+      - time: 0.68980956
         functionName: _LaunchSpell
         data: 
         objectReferenceParameter: {instanceID: 0}

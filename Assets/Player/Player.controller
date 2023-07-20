@@ -68,13 +68,13 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 9050066022016914788}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: MovementSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -533,6 +533,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: MovementSpeed
+    m_Type: 1
+    m_DefaultFloat: 1
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   - m_Name: Jump
     m_Type: 9
     m_DefaultFloat: 0
@@ -630,10 +636,10 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.01505477
+  m_TransitionDuration: 0.043345347
   m_TransitionOffset: 0
-  m_ExitTime: 0.0027236254
-  m_HasExitTime: 1
+  m_ExitTime: 0.0027236252
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -754,9 +760,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.50761664
+  m_TransitionDuration: 0.17193462
   m_TransitionOffset: 0
-  m_ExitTime: 0.0000000048834012
+  m_ExitTime: 0.000000024192493
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -849,7 +855,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -8854403716602931874}
-    m_Position: {x: -300, y: 100, z: 0}
+    m_Position: {x: -210, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -804152216272884527}
     m_Position: {x: 10, y: 90, z: 0}
@@ -868,7 +874,7 @@ AnimatorStateMachine:
   - first: {fileID: 8186253123057149426}
     second: []
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: -280, y: 180, z: 0}
+  m_AnyStatePosition: {x: -190, y: 170, z: 0}
   m_EntryPosition: {x: 280, y: 10, z: 0}
   m_ExitPosition: {x: 910, y: 210, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
@@ -887,9 +893,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.2024168
+  m_TransitionDuration: 0.31204054
   m_TransitionOffset: 0
-  m_ExitTime: 0.0000000033605574
+  m_ExitTime: 0
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

@@ -62,6 +62,14 @@ namespace Player
             if (faceMoveDirection) FaceMoveDirection();
             SetWalkingAnimationAnimationDirections();
         }
+        
+        protected void RotateTowardsCameraView()
+        {
+            var cameraForward = GameManager.Instance.MainCamera.transform.forward;
+            cameraForward.Scale(new Vector3(1, 0, 1));
+            cameraForward.Normalize();
+            RotateTowards(cameraForward, player.SnapToLookDirectionSpeed);
+        }
 
         protected void SetWalkingAnimationAnimationDirections()
         {

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CastTime>k__BackingField: 1
   <MovementSpeedWhileCasting>k__BackingField: 1
-  <PlayerSlowdownSpeed>k__BackingField: 0.2
+  <PlayerSlowdownTime>k__BackingField: 0.2
   <Spell>k__BackingField: {fileID: 3941108682560161897, guid: 0a127ad0b6a19e74fb65ac96acafddc9,
     type: 3}
   <Animator>k__BackingField: {fileID: 22100000, guid: e3074261ae2741d45a953696ea36d52e,

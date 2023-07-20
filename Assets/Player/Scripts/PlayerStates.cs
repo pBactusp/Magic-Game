@@ -220,9 +220,9 @@ namespace Player
             while (time < spellData.CastTime)
             {
                 // Handle slowing down
-                if (time < spellData.PlayerSlowdownSpeed)
+                if (time < spellData.PlayerSlowdownTime)
                 {
-                    currentMovementSpeed = Mathf.Lerp(player.WalkSpeed, spellData.MovementSpeedWhileCasting, time / spellData.PlayerSlowdownSpeed);
+                    currentMovementSpeed = Mathf.Lerp(player.WalkSpeed, spellData.MovementSpeedWhileCasting, time / spellData.PlayerSlowdownTime);
                     player.Animator.SetMovementSpeed(currentMovementSpeed / player.WalkSpeed);
                 }
                 else if (!reachedTargetSpeed)

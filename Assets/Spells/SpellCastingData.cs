@@ -11,6 +11,7 @@ public class SpellCastingData : ScriptableObject
     [field: SerializeField] public GameObject Spell { get; private set; }
     [field: SerializeField] public AnimatorOverrideController Animator { get; private set; }
     [field: SerializeField] public SpellOrigin Origin { get; private set; }
+    [field: SerializeField] public bool StickToOrigin { get; private set; }
 }
 
 [CreateAssetMenu(fileName = "SelfSpellData", menuName = "Spell Data/Self Targeting Spell")]
@@ -25,5 +26,6 @@ public enum SpellOrigin
     Null,
     RightHand,
     LeftHand,
-    Chest
+    Chest,
+    Head
 }

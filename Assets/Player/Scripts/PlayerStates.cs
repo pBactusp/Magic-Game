@@ -163,6 +163,7 @@ namespace Player
                 case SpellOrigin.RightHand: spellOrigin = player.RightHand; break;
                 case SpellOrigin.LeftHand: spellOrigin = player.LeftHand; break;
                 case SpellOrigin.Chest: spellOrigin = player.Chest; break;
+                case SpellOrigin.Head: spellOrigin = player.Head; break;
                 default: break;
             }
 
@@ -206,7 +207,8 @@ namespace Player
             {
                 Origin = spellOrigin,
                 Direction = GameManager.Instance.MainCamera.transform.forward,
-                Target = null
+                Target = null,
+                Parent = spellData.StickToOrigin ? spellOrigin : null
             };
 
             spell.Launch(args);

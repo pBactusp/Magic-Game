@@ -80,6 +80,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Spell 3"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b12ba4e-b35b-428f-8e34-ba8cf522a32e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Spell 4"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ba6ec06-9308-4867-853d-4225349ce531"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +210,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Spell 2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55f38561-bf1e-4fb9-b2d8-720527266bec"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard And Mouse"",
+                    ""action"": ""Spell 3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1062b88e-6a2b-45ed-9597-d380d3fd6f00"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard And Mouse"",
+                    ""action"": ""Spell 4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -223,6 +263,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Spell1 = m_Player.FindAction("Spell 1", throwIfNotFound: true);
         m_Player_Spell2 = m_Player.FindAction("Spell 2", throwIfNotFound: true);
+        m_Player_Spell3 = m_Player.FindAction("Spell 3", throwIfNotFound: true);
+        m_Player_Spell4 = m_Player.FindAction("Spell 4", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -290,6 +332,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Spell1;
     private readonly InputAction m_Player_Spell2;
+    private readonly InputAction m_Player_Spell3;
+    private readonly InputAction m_Player_Spell4;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -300,6 +344,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Spell1 => m_Wrapper.m_Player_Spell1;
         public InputAction @Spell2 => m_Wrapper.m_Player_Spell2;
+        public InputAction @Spell3 => m_Wrapper.m_Player_Spell3;
+        public InputAction @Spell4 => m_Wrapper.m_Player_Spell4;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -327,6 +373,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Spell2.started += instance.OnSpell2;
             @Spell2.performed += instance.OnSpell2;
             @Spell2.canceled += instance.OnSpell2;
+            @Spell3.started += instance.OnSpell3;
+            @Spell3.performed += instance.OnSpell3;
+            @Spell3.canceled += instance.OnSpell3;
+            @Spell4.started += instance.OnSpell4;
+            @Spell4.performed += instance.OnSpell4;
+            @Spell4.canceled += instance.OnSpell4;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -349,6 +401,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Spell2.started -= instance.OnSpell2;
             @Spell2.performed -= instance.OnSpell2;
             @Spell2.canceled -= instance.OnSpell2;
+            @Spell3.started -= instance.OnSpell3;
+            @Spell3.performed -= instance.OnSpell3;
+            @Spell3.canceled -= instance.OnSpell3;
+            @Spell4.started -= instance.OnSpell4;
+            @Spell4.performed -= instance.OnSpell4;
+            @Spell4.canceled -= instance.OnSpell4;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -383,5 +441,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnSpell1(InputAction.CallbackContext context);
         void OnSpell2(InputAction.CallbackContext context);
+        void OnSpell3(InputAction.CallbackContext context);
+        void OnSpell4(InputAction.CallbackContext context);
     }
 }

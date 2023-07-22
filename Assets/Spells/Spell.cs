@@ -13,20 +13,8 @@ public abstract class Spell : MonoBehaviour
     public Action OnHit;
 
     protected float normalizedLifetime { get; private set; }
+    protected bool isAlive { get; private set; }
 
-    public void Init(SpellInitializationArguments args)
-    {
-        this.args = args;
-
-        transform.position = args.Origin.position;
-        transform.rotation = args.Origin.rotation;
-        transform.parent = args.Parent;
-
-        normalizedLifetime = 0;
-
-        StartCoroutine(WaitForDeath());
-        OnLaunch();
-    }
 
     public void Spawn(Transform parent)
     {
@@ -44,9 +32,11 @@ public abstract class Spell : MonoBehaviour
         transform.parent = args.Parent;
 
         normalizedLifetime = 0;
+        isAlive = true;
 
         StartCoroutine(WaitForDeath());
         OnLaunch();
+        OnLateLaunch();
     }
 
     IEnumerator WaitForDeath()
@@ -65,8 +55,10 @@ public abstract class Spell : MonoBehaviour
 
     protected virtual void OnSpawn() { }
     protected virtual void OnLaunch() { }
+    protected virtual void OnLateLaunch() { }
     protected virtual void Die()
     {
+        isAlive = false;
         gameObject.SetActive(false);
         Destroy(gameObject);
     }

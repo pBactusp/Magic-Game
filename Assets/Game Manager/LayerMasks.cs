@@ -13,6 +13,7 @@ public class LayerMasks : MonoBehaviour
     public static LayerMask Interactable;
     public static LayerMask Selection;
     public static LayerMask Cutout;
+    public static LayerMask PullAble;
 
     public LayerMask PlayerMask;
     public LayerMask ObstructionMask;
@@ -21,6 +22,7 @@ public class LayerMasks : MonoBehaviour
     public LayerMask InteractableMask;
     public LayerMask SelectionMask;
     public LayerMask CutoutMask;
+    public LayerMask PullAbleMask;
 
     private void Awake()
     {
@@ -48,6 +50,7 @@ public class LayerMasks : MonoBehaviour
         Interactable = InteractableMask;
         Selection = SelectionMask;
         Cutout = CutoutMask;
+        PullAble = PullAbleMask;
     }
 
 

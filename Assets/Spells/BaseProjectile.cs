@@ -25,7 +25,11 @@ public abstract class BaseProjectile : Spell
 
     protected override void OnLaunch()
     {
-        StartCoroutine(ChangeSpeedOverLifeTime());
+        if (speed > 0)
+        {
+            rb.velocity = args.Direction * speed;
+            StartCoroutine(ChangeSpeedOverLifeTime());
+        }
     }
 
     protected override void Die()
@@ -34,7 +38,7 @@ public abstract class BaseProjectile : Spell
     }
 
 
-    private IEnumerator ChangeSpeedOverLifeTime()
+    protected IEnumerator ChangeSpeedOverLifeTime()
     {
         while (isAlive)
         {

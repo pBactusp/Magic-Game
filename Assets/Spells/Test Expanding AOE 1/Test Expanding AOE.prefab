@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6916316716326334142}
   - component: {fileID: 6216896809613776889}
   - component: {fileID: 3005281198050213271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Test Expanding AOE
   m_TagString: Untagged
   m_Icon: {fileID: 0}

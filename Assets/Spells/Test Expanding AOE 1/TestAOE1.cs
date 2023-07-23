@@ -12,6 +12,7 @@ public class TestAOE1 : BaseAreaOfEffect
 
     protected override void OnSpawn()
     {
+        base.OnSpawn();
         transform.localScale = Vector3.one * startScale;
     }
 

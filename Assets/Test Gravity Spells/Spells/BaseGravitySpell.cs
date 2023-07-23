@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseGravitySpell : BaseAreaOfEffect
+public abstract class BaseGravitySpell : BaseProjectile
 {
     [field: SerializeField] public float PullForce { get; protected set; }
     [field: SerializeField] public float PullRadius { get; protected set; }
@@ -16,7 +16,6 @@ public abstract class BaseGravitySpell : BaseAreaOfEffect
     protected override void OnLaunch()
     {
         base.OnLaunch();
-        rb.velocity = args.Direction * speed;
         StartCoroutine(UpdatePullAbles());
         StartCoroutine(Pull());
     }
@@ -52,9 +51,12 @@ public abstract class BaseGravitySpell : BaseAreaOfEffect
                 var pullVector = transform.position - pullAbleObjects[i].transform.position;
 
                 if (falloff)
-                    pullAbleObjects[i].AddForce(pullVector.normalized * PullForce);
+                {
+
+                    pullAbleObjects[i].AddForce(pullVector.normalized * PullForce / Mathf.Max(pullVector.sqrMagnitude, 1));
+                }
                 else
-                    pullAbleObjects[i].AddForce(pullVector.normalized * PullForce / pullVector.sqrMagnitude);
+                    pullAbleObjects[i].AddForce(pullVector.normalized * PullForce);
 
             }
 

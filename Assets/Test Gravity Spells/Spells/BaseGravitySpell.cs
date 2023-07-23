@@ -6,11 +6,12 @@ public abstract class BaseGravitySpell : BaseAreaOfEffect
 {
     [SerializeField] protected float pullForce;
     [SerializeField] protected float pullRadius;
+    [SerializeField] protected bool falloff;
 
     [Header("Performance")]
     [SerializeField] protected float updatePullAblesDelay;
 
-    private PullAble[] pullAbleObjects;
+    private Rigidbody[] pullAbleObjects;
 
     protected override void OnLaunch()
     {
@@ -32,10 +33,10 @@ public abstract class BaseGravitySpell : BaseAreaOfEffect
         while (isAlive)
         {
             var cols = Physics.OverlapSphere(transform.position, pullRadius, LayerMasks.PullAble);
-            pullAbleObjects = new PullAble[cols.Length];
+            pullAbleObjects = new Rigidbody[cols.Length];
 
             for (int i = 0; i < cols.Length; i++)
-                pullAbleObjects[i] = cols[i].GetComponent<PullAble>();
+                pullAbleObjects[i] = cols[i].GetComponent<Rigidbody>();
 
             yield return wait;
         }
@@ -48,8 +49,13 @@ public abstract class BaseGravitySpell : BaseAreaOfEffect
         {
             for (int i = 0; i < pullAbleObjects.Length; i++)
             {
-                var pullDirection = (transform.position - pullAbleObjects[i].transform.position).normalized;
-                pullAbleObjects[i].ApplyForce(pullDirection * pullForce);
+                var pullVector = transform.position - pullAbleObjects[i].transform.position;
+
+                if (falloff)
+                    pullAbleObjects[i].AddForce(pullVector.normalized * pullForce);
+                else
+                    pullAbleObjects[i].AddForce(pullVector.normalized * pullForce / pullVector.sqrMagnitude);
+
             }
 
             yield return null;

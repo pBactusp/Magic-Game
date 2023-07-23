@@ -199,4 +199,5 @@ MonoBehaviour:
     m_RotationOrder: 4
   pullForce: 70
   pullRadius: 5
+  falloff: 1
   updatePullAblesDelay: 0.5

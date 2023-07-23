@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class BaseGravitySpell : BaseAreaOfEffect
 {
-    [SerializeField] protected float pullForce;
-    [SerializeField] protected float pullRadius;
+    [field: SerializeField] public float PullForce { get; protected set; }
+    [field: SerializeField] public float PullRadius { get; protected set; }
     [SerializeField] protected bool falloff;
 
     [Header("Performance")]
@@ -32,7 +32,7 @@ public abstract class BaseGravitySpell : BaseAreaOfEffect
 
         while (isAlive)
         {
-            var cols = Physics.OverlapSphere(transform.position, pullRadius, LayerMasks.PullAble);
+            var cols = Physics.OverlapSphere(transform.position, PullRadius, LayerMasks.PullAble);
             pullAbleObjects = new Rigidbody[cols.Length];
 
             for (int i = 0; i < cols.Length; i++)
@@ -52,9 +52,9 @@ public abstract class BaseGravitySpell : BaseAreaOfEffect
                 var pullVector = transform.position - pullAbleObjects[i].transform.position;
 
                 if (falloff)
-                    pullAbleObjects[i].AddForce(pullVector.normalized * pullForce);
+                    pullAbleObjects[i].AddForce(pullVector.normalized * PullForce);
                 else
-                    pullAbleObjects[i].AddForce(pullVector.normalized * pullForce / pullVector.sqrMagnitude);
+                    pullAbleObjects[i].AddForce(pullVector.normalized * PullForce / pullVector.sqrMagnitude);
 
             }
 
@@ -65,6 +65,6 @@ public abstract class BaseGravitySpell : BaseAreaOfEffect
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, pullRadius);
+        Gizmos.DrawWireSphere(transform.position, PullRadius);
     }
 }

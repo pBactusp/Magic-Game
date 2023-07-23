@@ -197,7 +197,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  pullForce: 70
-  pullRadius: 5
+  <PullForce>k__BackingField: 70
+  <PullRadius>k__BackingField: 10
   falloff: 1
   updatePullAblesDelay: 0.5

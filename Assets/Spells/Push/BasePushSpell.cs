@@ -68,8 +68,8 @@ public abstract class BasePushSpell : BaseProjectile
             {
                 if (falloff)
                 {
-                    var sqrDistance = (rb.transform.position - transform.position).sqrMagnitude;
-                    rb.AddForce(normalizedDirection * Force / Mathf.Max(sqrDistance, 1f), ForceMode.Impulse);
+                    var distance = (rb.transform.position - transform.position).magnitude;
+                    rb.AddForce(normalizedDirection * Force / Mathf.Max(distance, 1f), ForceMode.Impulse);
                 }
                 else
                     rb.AddForce(normalizedDirection * Force, ForceMode.Impulse);

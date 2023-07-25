@@ -198,4 +198,4 @@ MonoBehaviour:
     m_RotationOrder: 4
   <Force>k__BackingField: 100
   <Radius>k__BackingField: 5
-  falloff: 0
+  falloff: 1

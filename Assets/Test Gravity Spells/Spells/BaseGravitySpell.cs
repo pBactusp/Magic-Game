@@ -11,7 +11,7 @@ public abstract class BaseGravitySpell : BaseProjectile
     [Header("Performance")]
     [SerializeField] protected float updatePullAblesDelay;
 
-    private Rigidbody[] pullAbleObjects;
+    protected Rigidbody[] pullAbleObjects;
 
     protected override void OnLaunch()
     {
@@ -27,8 +27,6 @@ public abstract class BaseGravitySpell : BaseProjectile
 
     private IEnumerator UpdatePullAbles()
     {
-        var wait = new WaitForSeconds(updatePullAblesDelay);
-
         while (isAlive)
         {
             var cols = Physics.OverlapSphere(transform.position, PullRadius, LayerMasks.PullAble);
@@ -37,7 +35,7 @@ public abstract class BaseGravitySpell : BaseProjectile
             for (int i = 0; i < cols.Length; i++)
                 pullAbleObjects[i] = cols[i].GetComponent<Rigidbody>();
 
-            yield return wait;
+            yield return new WaitForSeconds(updatePullAblesDelay); ;
         }
 
     }
@@ -52,7 +50,6 @@ public abstract class BaseGravitySpell : BaseProjectile
 
                 if (falloff)
                 {
-
                     pullAbleObjects[i].AddForce(pullVector.normalized * PullForce / Mathf.Max(pullVector.magnitude/*sqrMagnitude*/, 1));
                 }
                 else

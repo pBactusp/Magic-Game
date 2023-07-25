@@ -5,21 +5,26 @@ using UnityEngine.Rendering;
 
 public class SpawnAround : BaseProjectile
 {
+    [Header("Spawned Objects Properties")]
     [SerializeField] private float spawnedObjectsFloatTime;
     [SerializeField] private float minAmount;
     [SerializeField] private float maxAmount;
+    [SerializeField] private float minScaleMultiplier;
+    [SerializeField] private float maxScaleMultiplier;
     [SerializeField] private float radius;
     [SerializeField] private Vector3 spawnOffset;
     [SerializeField] private Vector3 heightOffset;
 
     [SerializeField] private GameObject[] prefabs;
 
-    private Rigidbody[] rbs;
-    private Collider[] cols;
+
 
     [Header("For Material")]
     [SerializeField] private float fadeTime;
 
+
+    private Rigidbody[] rbs;
+    private Collider[] cols;
     private Material material;
 
 
@@ -111,7 +116,9 @@ public class SpawnAround : BaseProjectile
     private GameObject SpawnObject(Vector3 position)
     {
         var prefab = prefabs[Random.Range(0, prefabs.Length)];
-        return Instantiate(prefab, position, transform.rotation);
+        var obj = Instantiate(prefab, position, transform.rotation);
+        obj.transform.localScale = obj.transform.localScale * Random.Range(minScaleMultiplier, maxScaleMultiplier);
+        return obj;
     }
 
 

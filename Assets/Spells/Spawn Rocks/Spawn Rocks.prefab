@@ -183,11 +183,13 @@ MonoBehaviour:
   spawnedObjectsFloatTime: 1
   minAmount: 40
   maxAmount: 100
+  minScaleMultiplier: 0.1
+  maxScaleMultiplier: 1.5
   radius: 5
   spawnOffset: {x: 0, y: -5, z: 0}
   heightOffset: {x: 0, y: 3, z: 0}
   prefabs:
-  - {fileID: 1480201144345714930, guid: 67087d055f2732c4da9ca9ddf1bc8c5d, type: 3}
-  - {fileID: 5201970521450764355, guid: e02905f7aa257a844929c56bacdab342, type: 3}
-  - {fileID: 1596127501544360140, guid: 9d0585f9a3e0c51408e0f9bf018cf444, type: 3}
+  - {fileID: 3047575900215198302, guid: 6ba8dc0b012eec549a522e3343d6a4d1, type: 3}
+  - {fileID: 7534079181725782330, guid: f28f1fb0707c25249a0a0c87f9f09a77, type: 3}
+  - {fileID: 729477735736431995, guid: 55207e3f8bd9ba84fa2522981be26dc9, type: 3}
   fadeTime: 0.8

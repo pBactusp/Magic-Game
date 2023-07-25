@@ -37,7 +37,7 @@ public class TestAOE1 : BaseAreaOfEffect
         //Die();
     }
 
-    protected override void Die()
+    public override void Die()
     {
         StopCoroutine(expand);
         base.Die();

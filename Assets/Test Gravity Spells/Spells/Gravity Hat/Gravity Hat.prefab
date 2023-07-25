@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 4463307767086330151}
   m_Layer: 6
   m_Name: Gravity Hat
-  m_TagString: Untagged
+  m_TagString: Cancelable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,6 +297,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   <PullForce>k__BackingField: 50
   <PullRadius>k__BackingField: 10
-  falloff: 0
+  falloff: 1
   updatePullAblesDelay: 0.5
   offset: {x: 0, y: 1, z: 0}

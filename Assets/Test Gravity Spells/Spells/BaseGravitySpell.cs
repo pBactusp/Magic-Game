@@ -20,7 +20,7 @@ public abstract class BaseGravitySpell : BaseProjectile
         StartCoroutine(Pull());
     }
 
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
     }
@@ -53,7 +53,7 @@ public abstract class BaseGravitySpell : BaseProjectile
                 if (falloff)
                 {
 
-                    pullAbleObjects[i].AddForce(pullVector.normalized * PullForce / Mathf.Max(pullVector.sqrMagnitude, 1));
+                    pullAbleObjects[i].AddForce(pullVector.normalized * PullForce / Mathf.Max(pullVector.magnitude/*sqrMagnitude*/, 1));
                 }
                 else
                     pullAbleObjects[i].AddForce(pullVector.normalized * PullForce);

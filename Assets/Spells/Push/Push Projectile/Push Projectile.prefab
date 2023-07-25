@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2513734262543059262}
   - component: {fileID: 7617668279022474332}
   - component: {fileID: 7278048257261640277}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Push Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,4 +198,4 @@ MonoBehaviour:
     m_RotationOrder: 4
   <Force>k__BackingField: 100
   <Radius>k__BackingField: 5
-  falloff: 1
+  falloff: 0

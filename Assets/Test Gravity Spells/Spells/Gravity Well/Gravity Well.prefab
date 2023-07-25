@@ -200,9 +200,10 @@ GameObject:
   - component: {fileID: 887162094784068854}
   - component: {fileID: 6463133664072646657}
   - component: {fileID: 8452583209563763519}
+  - component: {fileID: -4408342211318284429}
   m_Layer: 6
   m_Name: Gravity Well
-  m_TagString: Untagged
+  m_TagString: Cancelable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -306,5 +307,26 @@ MonoBehaviour:
     m_RotationOrder: 4
   <PullForce>k__BackingField: 70
   <PullRadius>k__BackingField: 10
-  falloff: 0
+  falloff: 1
   updatePullAblesDelay: 0.5
+--- !u!135 &-4408342211318284429
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7064732769898676796}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0}

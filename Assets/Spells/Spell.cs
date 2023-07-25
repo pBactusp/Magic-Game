@@ -56,7 +56,7 @@ public abstract class Spell : MonoBehaviour
     protected virtual void OnSpawn() { }
     protected virtual void OnLaunch() { }
     protected virtual void OnLateLaunch() { }
-    protected virtual void Die()
+    public virtual void Die()
     {
         isAlive = false;
         gameObject.SetActive(false);

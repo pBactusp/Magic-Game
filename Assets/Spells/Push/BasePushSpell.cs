@@ -27,12 +27,38 @@ public abstract class BasePushSpell : BaseProjectile
                     rb.AddForce(pushVector.normalized * Force, ForceMode.Impulse);
             }
         }
+
+        // Find and cancel gravity wells
+        cols = Physics.OverlapSphere(transform.position, Radius, LayerMasks.Spells);
+
+        for (int i = 0; i < cols.Length; i++)
+        {
+            if (cols[i].CompareTag("Cancelable"))
+            {
+                var spell = cols[i].GetComponent<Spell>();
+                spell.Die();
+            }
+        }
     }
     protected void Push(Vector3 direction)
     {
         var normalizedDirection = direction.normalized;
 
-        var cols = Physics.OverlapSphere(transform.position, Radius);
+
+
+        // Find and cancel gravity wells
+        var cols = Physics.OverlapSphere(transform.position, Radius, LayerMasks.Spells);
+
+        for (int i = 0; i < cols.Length; i++)
+        {
+            if (cols[i].CompareTag("Cancelable"))
+            {
+                var spell = cols[i].GetComponent<Spell>();
+                spell.Die();
+            }
+        }
+
+        cols = Physics.OverlapSphere(transform.position, Radius, LayerMasks.Pushable);
 
         for (int i = 0; i < cols.Length; i++)
         {
@@ -49,6 +75,9 @@ public abstract class BasePushSpell : BaseProjectile
                     rb.AddForce(normalizedDirection * Force, ForceMode.Impulse);
             }
         }
+
+
+        
     }
 
     private void OnDrawGizmos()

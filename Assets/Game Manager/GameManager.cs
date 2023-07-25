@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
 
+
     [Header("Components")]
     public Camera MainCamera;
 
@@ -41,6 +42,8 @@ public class GameManager : MonoBehaviour
         // Template
     }
 
+
+    
 
     public static float CalculateDamage(Resistances resistance, DamageData damage)
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeWeapon : Weapon
 {
-    [field: SerializeField] public override float AttackDistance { get; protected set; }
+    //[field: SerializeField] public override float AttackDistance { get; protected set; }
 
 
     new private void Awake()

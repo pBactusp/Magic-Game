@@ -44,17 +44,19 @@ public abstract class BaseGravitySpell : BaseProjectile
     {
         while (isAlive)
         {
-            for (int i = 0; i < pullAbleObjects.Length; i++)
+            foreach (var obj in pullAbleObjects)
             {
-                var pullVector = transform.position - pullAbleObjects[i].transform.position;
-
-                if (falloff)
+                if (obj != null)
                 {
-                    pullAbleObjects[i].AddForce(pullVector.normalized * PullForce / Mathf.Max(pullVector.magnitude/*sqrMagnitude*/, 1));
-                }
-                else
-                    pullAbleObjects[i].AddForce(pullVector.normalized * PullForce);
+                    var pullVector = transform.position - obj.transform.position;
 
+                    if (falloff)
+                    {
+                        obj.AddForce(pullVector.normalized * PullForce / Mathf.Max(pullVector.magnitude/*sqrMagnitude*/, 1));
+                    }
+                    else
+                        obj.AddForce(pullVector.normalized * PullForce);
+                }
             }
 
             yield return null;

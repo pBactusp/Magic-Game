@@ -102,12 +102,26 @@ public class SpawnAround : BaseProjectile
         int amount = (int)Random.Range(minAmount, maxAmount);
         var positions = new Vector3[amount];
 
+        //// Square spawn
+        //for (int i = 0; i < amount; i++)
+        //{
+        //    float newX = Random.Range(-radius, radius);
+        //    float newZ = Random.Range(-radius, radius);
+
+        //    positions[i] = origin + new Vector3(newX, 0, newZ);
+        //}
+
+
+        // Circle spawn
         for (int i = 0; i < amount; i++)
         {
-            float newX = Random.Range(-radius, radius);
-            float newZ = Random.Range(-radius, radius);
+            float distance = Random.Range(0f, radius);
+            float angle = Random.Range(0f, 360f);
 
-            positions[i] = origin + new Vector3(newX, 0, newZ);
+            Vector3 newPos = Vector3.forward * distance;
+            newPos = Quaternion.AngleAxis(angle, Vector3.up) * newPos;
+
+            positions[i] = origin + newPos + new Vector3(0, Random.Range(-1f, 2f), 0);
         }
 
         return positions;

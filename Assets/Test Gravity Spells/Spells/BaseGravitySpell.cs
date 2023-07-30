@@ -12,16 +12,20 @@ public abstract class BaseGravitySpell : BaseProjectile
     [SerializeField] protected float updatePullAblesDelay;
 
     protected Rigidbody[] pullAbleObjects;
+    [HideInInspector] private int _index;
 
     protected override void OnLaunch()
     {
         base.OnLaunch();
+        _index = GravitySpellsManager.AddSpell(this);
+
         StartCoroutine(UpdatePullAbles());
         StartCoroutine(Pull());
     }
 
     public override void Die()
     {
+        GravitySpellsManager.RemoveSpell(_index);
         base.Die();
     }
 

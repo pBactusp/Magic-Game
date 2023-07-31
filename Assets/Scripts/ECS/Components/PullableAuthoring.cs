@@ -8,8 +8,7 @@ using UnityEngine;
 
 public class PullableAuthoring : MonoBehaviour
 {
-    public float PullStrength;
-    public float3 PullCenter;
+
 }
 
 
@@ -18,11 +17,7 @@ public class PullableBaker : Baker<PullableAuthoring>
     public override void Bake(PullableAuthoring authoring)
     {
         Entity entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
-        AddComponent(entity, new Pullable
-        {
-            PullStrength = authoring.PullStrength,
-            PullCenter = authoring.PullCenter
-        });
+        AddComponent(entity, new Pullable {});
         
     }
 }

@@ -8,6 +8,5 @@ using UnityEngine;
 
 public struct Pullable : IComponentData
 {
-    public float PullStrength;
-    public float3 PullCenter;
+
 }

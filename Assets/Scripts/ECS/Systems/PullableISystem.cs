@@ -1,3 +1,5 @@
+// Ignore Spelling: pullable
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -13,7 +15,8 @@ public partial struct PullableISystem : ISystem
 
     void OnUpdate(ref SystemState state)
     {
-        NativeArray<PullData> pd = new NativeArray<PullData>(GravitySpellsManager.GetPullData(), Allocator.TempJob);
+        //NativeArray<PullData> pd = new NativeArray<PullData>(GravitySpellsManager.GetPullData(), Allocator.TempJob);
+        var pd = GravitySpellsManager.GetPullData();
         float deltaTime = SystemAPI.Time.DeltaTime;
 
         //Entities.ForEach((PullableAspect pullable) =>
@@ -25,5 +28,22 @@ public partial struct PullableISystem : ISystem
         {
             pullable.BePulled(pd, deltaTime);
         }
+
+        //new PullJob()
+        //{
+        //    PullData = pd,
+        //    DeltaTime = deltaTime,
+        //}.ScheduleParallel();
+    }
+}
+
+public partial struct PullJob : IJobEntity
+{
+    public PullData PullData;
+    public float DeltaTime;
+
+    public void Execute(PullableAspect pullable)
+    {
+        pullable.BePulled(PullData, DeltaTime);
     }
 }

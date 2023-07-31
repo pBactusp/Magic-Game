@@ -16,7 +16,7 @@ public readonly partial struct PullableAspect : IAspect
     private readonly RigidBodyAspect rb;
     private readonly RefRO<Pullable> pullable;
 
-    public void BePulled(NativeArray<PullData> pullData, float deltaTime)
+    public void BePulled(PullData pullData, float deltaTime)
     {
         float3 force = Vector3.zero;
 
@@ -32,10 +32,11 @@ public readonly partial struct PullableAspect : IAspect
         //    force += math.normalize(dir) * pullData[i].Strength / math.max(math.length(dir), 1);
         //}
 
-        foreach (var data in pullData)
+        //foreach (var data in pullData)
+        for (int i = 0; i < pullData.Count; i++)
         {
-            var dir = data.Position - rb.Position;
-            force += math.normalize(dir) * data.Strength / math.max(math.length(dir), 1);
+            var dir = pullData.Position[i] - rb.Position;
+            force += math.normalize(dir) * pullData.Strength[i] / math.max(math.length(dir), 1);
         }
 
         rb.ApplyLinearImpulseWorldSpace(force * deltaTime);
